@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import useJsonFetch from './useJsonFetch';
 
-function App() {
-  const [count, setCount] = useState(0)
+function DataComponent() {
+  const [data, loading, error] = useJsonFetch('http://localhost:7070/data', {});
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return <p>Data: {JSON.stringify(data)}</p>;
 }
 
-export default App
+function ErrorComponent() {
+  const [data, loading, error] = useJsonFetch('http://localhost:7070/error', {});
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return <p>Data: {JSON.stringify(data)}</p>;
+}
+
+function LoadingComponent() {
+  const [data, loading, error] = useJsonFetch('http://localhost:7070/loading', {});
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return <p>Data: {JSON.stringify(data)}</p>;
+}
+
+function App() {
+  return (
+    <div>
+      <DataComponent />
+      <ErrorComponent />
+      <LoadingComponent />
+    </div>
+  );
+}
+
+export default App;
