@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function ViewEditPost() {
     const { id } = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [editedContent, setEditedContent] = useState("");
@@ -44,7 +44,7 @@ function ViewEditPost() {
             method: "DELETE",
         })
             .then(() => {
-                history.push("/");
+                navigate("/");
             })
             .catch((error) => {
                 console.error("Ошибка при удалении поста: ", error);
@@ -78,7 +78,7 @@ function ViewEditPost() {
             ) : (
                 <p>Загрузка...</p>
             )}
-            <button onClick={() => history.push("/")}>Назад</button>
+            <button onClick={() => navigate(-1)}>Назад</button>
         </div>
     );
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
     const [content, setContent] = useState("");
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleCreatePost = () => {
         fetch("http://localhost:7070/posts", {
@@ -14,7 +14,7 @@ function CreatePost() {
             body: JSON.stringify({ content }),
         })
             .then(() => {
-                history.push("/");
+                navigate("/");
             })
             .catch((error) => {
                 console.error("Ошибка при создании поста: ", error);
@@ -31,7 +31,7 @@ function CreatePost() {
                 cols="50"
             />
             <button onClick={handleCreatePost}>Опубликовать</button>
-            <button onClick={() => history.push("/")}>Отмена</button>
+            <button onClick={() => navigate("/")}>Отмена</button>
         </div>
     );
 }
