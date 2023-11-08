@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Card from './components/Card';
+import CardBody from './components/CardBody';
+import CardTitle from './components/CardTitle';
+import CardText from './components/CardText';
+import CardLink from './components/CardLink';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <Card>
+        <img src="https://www.artotoys.ru/wa-data/public/shop/products/82/22/2282/images/3417/3417.750@2x.jpg" className="card-img-top" alt="..." />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <CardLink href="#">Go somewhere</CardLink>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody>
+          <CardTitle>Special title treatment</CardTitle>
+          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <CardLink href="#">Go somewhere</CardLink>
+        </CardBody>
+      </Card>
+    </div>
+  );
+};
 
-export default App
+export default App;
